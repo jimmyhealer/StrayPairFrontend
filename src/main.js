@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import routes from './routes.js'
+import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 Vue.config.productionTip = false
 
