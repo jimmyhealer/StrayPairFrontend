@@ -5,5 +5,6 @@ export default {
   '/pair': 'pair',
   '/result': 'result',
   '/follow-up': 'follow-up',
-  '/upload': 'upload'
+  '/upload': 'upload',
+  '/test': 'test'
 }
