@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
-    <b-card tag="article" style="max-width: 20rem;" class="card mb-2">
-      <b-card-title>{{method}}</b-card-title>
+    <b-card tag="article" style="width: 420px;" class="card mb-2">
+      <b-card-title>{{title}}</b-card-title>
       <b-form @submit="onSubmit">
         <b-form-group id="input-group-1" label="Username:" label-for="input-1">
           <b-form-input id="input-1" v-model="form.username" type="text" placeholder="輸入帳號" required>
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: 'LoginComponent',
+  name: "LoginComponent",
   props: {
     method: String
   },
@@ -33,17 +33,21 @@ export default {
         username: '',
         password: ''
       },
+      title: 'Login',
       UpButton: '',
       downButton: '',
       isRegister: false
     }
   },
   mounted() {
-    if (this.method === 'Login') {
+    this.isRegister = this.method === 'Register'
+    if (!this.isRegister) {
+      this.title = 'Login'
       this.UpButton = '登入'
       this.downButton = '建立帳號'
     }
     else {
+      this.title = 'Register'
       this.UpButton = '註冊'
       this.downButton = '使用帳號登入'
       this.isRegister = true
@@ -52,30 +56,36 @@ export default {
   methods: {
     onSubmit(event) {
       event.preventDefault()
-      this.$store.dispatch('actionLogin', {
-        username: this.form.username,
-        password: this.form.password
-      }).
-        then(() => {
-          this.$router.push('/')
-        })
-        .catch(() => {
-          console.log('error')
-        })
+      if (this.method === 'Login') {        
+        this.$store.dispatch('actionLogin', {
+          username: this.form.username,
+          password: this.form.password
+        }).
+          then(() => {
+            this.$router.push('/')
+          })
+          .catch(() => {
+            console.log('error')
+          })        
+      }
+      else {
+        this.$emit('state', true)
+      }
     },
     changeState() {
-      if (this.method === 'Register') {
-        this.method = 'Login'
+      if (this.isRegister) {
+        this.title = 'Login'
         this.UpButton = '登入'
         this.downButton = '建立帳號'
         this.isRegister = false
       }
       else {
-        this.method = 'Register'
+        this.title = 'Register'
         this.UpButton = '註冊'
         this.downButton = '使用帳號登入'
         this.isRegister = true
       }
+      this.$emit('update', this.title)
     }
   }
 }
@@ -83,7 +93,8 @@ export default {
 
 <style scoped>
 .login-container{
-  max-width: 320px;
+  width: 420px;
+  margin: auto;
 }
 .card-title {
   font-size: 32px;
