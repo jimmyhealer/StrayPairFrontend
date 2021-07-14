@@ -1,13 +1,12 @@
 <template>
   <div class="login">
-    <ImageComponent :urls="require('@/assets/img/login.jpg')">
-    </ImageComponent>
+    <ImageComponent :urls="require('@/assets/img/login.jpg')" />
     <div class="img-content">
       <h1>StrayPair 浪浪配配</h1>
-      <h3>領養代替購買，浪浪愛您們</h3>
+      <h3>找尋你生命中，不一樣的另一半</h3>
     </div>
     <div class="container">
-      <LoginComponent method="Login"></LoginComponent>
+      <LoginComponent method="Login" />
     </div>
   </div>
 </template>
