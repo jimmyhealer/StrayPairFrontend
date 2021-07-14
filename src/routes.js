@@ -2,6 +2,8 @@ export default {
   '/': 'login',
   '/profile': 'profile',
   '/pretest': 'pretest',
-  '/find': 'find',
-  '/track': 'track'
+  '/pair': 'pair',
+  '/result': 'result',
+  '/follow-up': 'follow-up',
+  '/upload': 'upload'
 }

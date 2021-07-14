@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="d-flex align-items-center justify-content-end" style="
-          background-image: url(https://picsum.photos/1920/1080);
+          background-image: url(https://picsum.photos/id/237/1920/1080);
           background-size: cover;
           background-repeat: no-repeat;
           background-attachment: fixed;
