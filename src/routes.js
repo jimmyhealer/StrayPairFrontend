@@ -1,4 +1,7 @@
 export default {
-  '/': 'Home',
-  '/about': 'About'
+  '/': 'login',
+  '/profile': 'profile',
+  '/pretest': 'pretest',
+  '/find': 'find',
+  '/track': 'track'
 }
