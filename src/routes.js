@@ -1,9 +1,13 @@
-export default {
-  '/': 'login',
-  '/profile': 'profile',
-  '/pretest': 'pretest',
-  '/pair': 'pair',
-  '/result': 'result',
-  '/follow-up': 'follow-up',
-  '/upload': 'upload'
-}
+import Login from './page/Login.vue';
+import Home from './page/Home.vue';
+
+export const routes = [
+  {
+    path: '/login',
+    component: Login
+  },
+  {
+    path: '/',
+    component: Home
+  }
+];
