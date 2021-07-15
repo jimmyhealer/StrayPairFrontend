@@ -8,7 +8,7 @@
           </div>
         </div>
         <div class="col-lg-6">
-          <div class="card-container">
+          <div class="card-container" >
             <b-card
               title="Card Title"
               img-src="https://picsum.photos/600/600/?image=25"
@@ -32,10 +32,20 @@
 </template>
 
 <script>
+import api from '@/api.js'
 
 export default {
   name: "Home",
-  components: {
+  data() {
+    return{
+      data: [],
+      number: []
+    }
+  },
+  mounted() {
+    api.getNumber().then((r) => this.number = r)
+    this.$http.get('http://localhost:3000/petdata').then((res) => {this.data = res.data.data})
+    console.log(this.data, this.number)
   },
   methods: {},
 };

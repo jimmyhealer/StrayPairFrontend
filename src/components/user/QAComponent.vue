@@ -3,10 +3,10 @@
     <b-card tag="article" class="card mb-2">
       <h1>QA</h1>
       <b-form @submit="onSubmit">
-        <b-tabs v-model="tabIndex" small card>
-          <b-tab title="1">
+        <b-tabs v-model="tabIndex" small card >
+          <b-tab :key="index" v-for="(item, index) in data" :title="index + 1">
             <b-form-group
-              label="下列何者不能給狗狗食用?"
+              :label="item.Ques"
               v-slot="{ ariaDescribedby }"
             >
               <b-form-radio
@@ -14,40 +14,11 @@
                 :aria-describedby="ariaDescribedby"
                 name="some-radios"
                 value="A"
-                >骨頭</b-form-radio
-              >
-              <b-form-radio
-                v-model="selected"
-                :aria-describedby="ariaDescribedby"
-                name="some-radios"
-                value="B"
-                >熟雞蛋</b-form-radio
-              >
-              <b-form-radio
-                v-model="selected"
-                :aria-describedby="ariaDescribedby"
-                name="some-radios"
-                value="骨頭"
-                >南瓜</b-form-radio
-              >
-              <b-form-radio
-                v-model="selected"
-                :aria-describedby="ariaDescribedby"
-                name="some-radios"
-                value="熟雞蛋"
-                >西瓜</b-form-radio
+                :key="index2" v-for="(i, index2) in item.option"
+                >{{i.content}}</b-form-radio
               >
             </b-form-group>
           </b-tab>
-          <b-tab title="2">I'm the first fading tab</b-tab>
-          <b-tab title="2">I'm the first fading tab</b-tab>
-          <b-tab title="2">I'm the first fading tab</b-tab>
-          <b-tab title="2">I'm the first fading tab</b-tab>
-          <b-tab title="2">I'm the first fading tab</b-tab>
-          <b-tab title="2">I'm the first fading tab</b-tab>
-          <b-tab title="2">I'm the first fading tab</b-tab>
-          <b-tab title="2">I'm the first fading tab</b-tab>
-          <b-tab title="10">I'm the first fading tab</b-tab>
         </b-tabs>
         <b-button type="submit" variant="primary">{{ UpButton }}</b-button>
       </b-form>
@@ -59,6 +30,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: "QAComponent",
   props: {
@@ -69,12 +41,15 @@ export default {
       form: {
         answer: [],
       },
+      data: [],
       title: "QA",
       tabIndex: 0,
       UpButton: "下一題",
     };
   },
   mounted() {
+    axios.defaults.baseURL = 'http://127.0.0.1:3000'
+    axios.get('/data').then((res) => {this.data = res.data})
   },
   methods: {
     onSubmit(event) {

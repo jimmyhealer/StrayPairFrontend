@@ -16,6 +16,7 @@ const vuexPersisted = new createPersistedState({
   key: 'myVuex',
   storage: window.localStorage,
   reducer: state => ({
+    profile: state.profile,
     session: state.session
   })
 });

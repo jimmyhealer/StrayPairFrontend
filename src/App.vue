@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <template v-if="isLogin">
+    <template v-if="!isLogin">
       <Navbar />
     </template>
     <router-view></router-view>
@@ -18,17 +18,11 @@ export default {
   },
   data(){
     return{
-      that: null
+      isLogin: true
     }
   },
-  computed: {
-    ...mapGetters({ isLogin: 'checkLogin'})
-  },
-  watch: {
-    session: function (val) {
-      console.log(val)
-      this.isLogin = val === 'ok'
-    }
+  mounted(){
+    this.isLogin = this.$route.path === "/login"
   }
 }
 </script>

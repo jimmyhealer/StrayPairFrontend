@@ -61,7 +61,8 @@ export default {
           username: this.form.username,
           password: this.form.password
         }).
-          then(() => {            
+          then(() => {         
+            this.$store.dispatch('getProfile')   
             this.$router.push('/')
           })
           .catch(() => {

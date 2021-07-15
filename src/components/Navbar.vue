@@ -8,13 +8,13 @@
         <b-nav-item :to="'home'">配對</b-nav-item>
         <b-nav-item :to="'result'">結果</b-nav-item>
         <b-nav-item :to="'followup'">回報</b-nav-item>
-        <b-button variant="danger" @click="test">Button</b-button>
+        <!-- <b-button variant="danger" @click="test">Button</b-button> -->
       </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown right>
             <template #button-content>
               <!-- <p>{{$state.getUserName}}</p> -->
-              Name
+              {{username}}
             </template>
             <!-- <b-dropdown-item href="#">Profile</b-dropdown-item> -->
             <b-dropdown-item @click="logout">Sign Out</b-dropdown-item>
@@ -29,7 +29,14 @@
 
 export default {
   name: 'Navbar',
-  computed:{
+  data() {
+    return{
+    }
+  },
+  computed: {
+    username () {
+      return "test" || this.$store.getUserName
+    }
   },
   methods: {
     logout(){
