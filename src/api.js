@@ -24,6 +24,9 @@ export default {
   },
   getNumber () {
     return ajax('pair')
+  },
+  UpdatePair (id, like){
+    return ajax('pair/my/' , 'post', {'id': id, 'like': like})
   }
 }
 
