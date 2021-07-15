@@ -1,23 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css';
 import App from './App.vue'
 import { routes } from './routes'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import store from './store'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-// import { library } from '@fortawesome/fontawesome-svg-core'
-// import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
-// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
-// library.add(faUserSecret)
-// Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
+Vue.use(ElementUI)
 
 const router = new VueRouter({
   routes,
@@ -28,7 +25,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => {
     return record.meta.requiresAuth;
   })) {
-    const isLogin = store.state.session === 'ok'
+    const isLogin = store.state.session !== undefined
     console.log(store.state.session)
     if (isLogin) {
       next();
@@ -44,6 +41,13 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
+
+// Vue.prototype.$message.config({
+//   duration: 2
+// })
+Vue.prototype.$error = (s) => Vue.prototype.$message.error(s)
+Vue.prototype.$info = (s) => Vue.prototype.$message.info(s)
+Vue.prototype.$success = (s) => Vue.prototype.$message.success(s)
 
 new Vue({
   el: '#app',

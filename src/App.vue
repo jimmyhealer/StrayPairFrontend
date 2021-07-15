@@ -18,15 +18,11 @@ export default {
   },
   data(){
     return{
-      isLogin: true,
       that: null
     }
   },
   computed: {
-    ...mapGetters({ session: 'getSession'})
-  },
-  mounted() {
-    this.isLogin = this.session === 'ok'
+    ...mapGetters({ isLogin: 'checkLogin'})
   },
   watch: {
     session: function (val) {

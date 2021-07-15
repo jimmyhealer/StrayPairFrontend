@@ -8,7 +8,8 @@ import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuex);
 
 export const state = {
-  session: ""
+  session: undefined,
+  profile: {}
 }
 
 const vuexPersisted = new createPersistedState({

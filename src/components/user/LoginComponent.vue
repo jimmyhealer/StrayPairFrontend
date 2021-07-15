@@ -61,7 +61,7 @@ export default {
           username: this.form.username,
           password: this.form.password
         }).
-          then(() => {
+          then(() => {            
             this.$router.push('/')
           })
           .catch(() => {

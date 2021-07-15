@@ -8,6 +8,7 @@
         <b-nav-item :to="'home'">配對</b-nav-item>
         <b-nav-item :to="'result'">結果</b-nav-item>
         <b-nav-item :to="'followup'">回報</b-nav-item>
+        <b-button variant="danger" @click="test">Button</b-button>
       </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown right>
@@ -25,14 +26,20 @@
 </template>
 
 <script>
+
 export default {
   name: 'Navbar',
+  computed:{
+  },
   methods: {
     logout(){
       this.$store.dispatch('actionLogout').
       then(() => {
         this.$router.push('/login')
       })
+    },
+    test() {
+      this.$store.dispatch('getProfile', 'test')
     }
   },
 }
